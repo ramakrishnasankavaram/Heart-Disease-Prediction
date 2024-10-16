@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Heart Disease Prediction</h1>
+
+        <!-- Main Input for Receiving Query to our Model -->
+        <form action="{{ url_for('predict') }}" method="post">
+            <input type="text" name="Age" placeholder="Age (in years)" required="required" />
+            <input type="text" name="sex" placeholder="Gender (1-male ; 0-female)" required="required" />
+            <input type="text" name="cp" placeholder="Chest pain type (0-typical angina ; 1-atypical angina ; 2-non-anginal pain ; 3-asymptomatic)" required="required" />
+            <input type="text" name="trestbps" placeholder="Resting blood pressure (in mm Hg)" required="required" />
+            <input type="text" name="chol" placeholder="Cholestoral in mg/dl" required="required" />
+            <input type="text" name="fbs" placeholder="Fasting blood sugar (1-true ; 0-false)" required="required" />
+            <input type="text" name="restecg" placeholder="Resting electrocardiographic results (values 0,1,2)" required="required" />
+            <input type="text" name="thalach" placeholder="Maximum heart rate achieved" required="required" />
+            <input type="text" name="exang" placeholder="Exercise induced angina (1-yes ; 0-no)" required="required" />
+            <input type="text" name="oldpeak" placeholder="Old peak" required="required" />
+            <input type="text" name="slope" placeholder="Slope of the peak exercise" required="required" />
+            <input type="text" name="ca" placeholder="Number of major vessels (0-3)" required="required" />
+            <input type="text" name="thal" placeholder="Thal (0-normal ; 1-fixed defect ; 2-reversable defect)" required="required" />
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <h2>Heart Disease ( 0-NO , 1-YES ) : {{results}}</h2>
+    </div>
+
+</body>
+
+</html>
