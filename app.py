@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
 
-ridge_model = pickle.load(open('models/reg.pkl', 'rb'))
+rf_model = pickle.load(open('models/rf.pkl', 'rb'))
 standard_scaler = pickle.load(open('models/scaler.pkl', 'rb'))
 
 @app.route('/', methods=['GET', 'POST'])
@@ -30,7 +30,7 @@ def predict():
 
             new_data_scaled = standard_scaler.transform([[Age, sex, cp, trestbps, chol, fbs, restecg,
                                                          thalach, exang, oldpeak, slope, ca, thal]])
-            result = ridge_model.predict(new_data_scaled)[0]
+            result = rf_model.predict(new_data_scaled)[0]
             if result == 1:
                 result_message = {
                     "text": "Heart Disease detected",
